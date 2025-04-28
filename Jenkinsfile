@@ -1,10 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage("Build") {
-      agent any
+    stage('Maven install') {
+      agent {
+		  docker {
+			  image 'maven:latest'
+		  }
+	  }
       steps {
-        sh "clean install"
+        sh "mvn clean install"
       }
     }
   }
