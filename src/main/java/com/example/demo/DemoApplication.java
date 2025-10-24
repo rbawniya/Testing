@@ -5,16 +5,35 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
+
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
+public class DemoApplication  {
 
 	public static void main(String[] args) {
 		System.out.println("Hello");
-		SpringApplication.run(DemoApplication.class, args);
+
+		String name = "aassjbnbbnky";
+
+		LinkedHashMap<Character, Integer> map = new LinkedHashMap();
+
+		//chat c = name.chatAt(0);
+		for(int i = 0; i < name.length(); i ++) {
+			if(map.containsKey(name.charAt(i))) {
+				map.put(name.charAt(i), map.get(name.charAt(i)) + 1);
+			}
+            else {
+					map.put(name.charAt(i), 1);
+				}
+
+			}
+
+			System.out.println(map.entrySet().stream().filter(obj -> obj.getValue() == 1).findFirst());
+
+
+		//SpringApplication.run(DemoApplication.class, args);
 	}
 
-	 @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(DemoApplication.class);
-    }
+
 }
