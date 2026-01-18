@@ -1,40 +1,70 @@
 package com.example.interview;
 
-import java.util.HashMap;
-import java.util.Objects;
+
+import io.jsonwebtoken.impl.lang.Functions;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DemoClass {
-    public static void main(String[] args) {
-        HashMap<Employee, String> map = new HashMap<>();
-        Employee employee = new Employee("Rajnee");
-        Employee employee1 = new Employee("Rajnee");
-        System.out.println(employee.equals(employee));
-        map.put(employee, "12");
-        map.put(employee1, "4");
-        System.out.println(map.size());
+
+    public static void main(String[] args) throws InterruptedException {
+       int[] num = {1,2,3,4,5};
+       IntStream.of(num).boxed().collect(Collectors.toMap(Function.identity(), i-> i*i, (k,v)-> k))
     }
+
 }
 
-class Employee {
+class Tommy {
+    private int id;
     private String name;
+    private int age;
 
-    public Employee(String name) {
+    public Tommy(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name);
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
+    public String toString() {
+        return "Tommy{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

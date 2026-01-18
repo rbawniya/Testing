@@ -1,9 +1,11 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AddTwoList {
     public static void main(String[] args) {
+
         ArrayList<Integer> list1 = new ArrayList<>();
         ArrayList<Integer> list2 = new ArrayList<>();
         list1.add(12);

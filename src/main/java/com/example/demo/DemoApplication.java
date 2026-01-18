@@ -1,39 +1,30 @@
 package com.example.demo;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
-import java.util.LinkedHashMap;
-import java.util.stream.Collectors;
+@SpringBootApplication(exclude = {SecurityFilterAutoConfiguration.class})
+@ComponentScan(basePackages = {"com.example.security.*"})
+public class DemoApplication {
 
-@SpringBootApplication
-public class DemoApplication  {
+//    @Autowired
+//    SnsClient snsClient;
 
-	public static void main(String[] args) {
-		System.out.println("Hello");
-
-		String name = "aassjbnbbnky";
-
-		LinkedHashMap<Character, Integer> map = new LinkedHashMap();
-
-		//chat c = name.chatAt(0);
-		for(int i = 0; i < name.length(); i ++) {
-			if(map.containsKey(name.charAt(i))) {
-				map.put(name.charAt(i), map.get(name.charAt(i)) + 1);
-			}
-            else {
-					map.put(name.charAt(i), 1);
-				}
-
-			}
-
-			System.out.println(map.entrySet().stream().filter(obj -> obj.getValue() == 1).findFirst());
-
-
-		//SpringApplication.run(DemoApplication.class, args);
-	}
-
-
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+//
+//    @GetMapping("/publish-error")
+//    public void send() {
+//        PublishRequest publishRequest = PublishRequest.builder().message("Hello").topicArn("my-topic").build();
+//        PublishResponse publishResponse = snsClient.publish(publishRequest);
+//    }
+//
+//    @SqsListener("Url")
+//    public void getMsg(String msg) {
+//
+//    }
 }
