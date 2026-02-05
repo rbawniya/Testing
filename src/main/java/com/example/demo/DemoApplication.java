@@ -1,20 +1,30 @@
 package com.example.demo;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
+@SpringBootApplication(exclude = {SecurityFilterAutoConfiguration.class})
+@ComponentScan(basePackages = {"com.example.security.*"})
+public class DemoApplication {
 
-	public static void main(String[] args) {
-		System.out.println("Hello");
-		SpringApplication.run(DemoApplication.class, args);
-	}
+//    @Autowired
+//    SnsClient snsClient;
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(DemoApplication.class);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+//
+//    @GetMapping("/publish-error")
+//    public void send() {
+//        PublishRequest publishRequest = PublishRequest.builder().message("Hello").topicArn("my-topic").build();
+//        PublishResponse publishResponse = snsClient.publish(publishRequest);
+//    }
+//
+//    @SqsListener("Url")
+//    public void getMsg(String msg) {
+//
+//    }
 }
